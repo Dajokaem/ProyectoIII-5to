@@ -23,7 +23,8 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         GenerarNumeros();
-       
+       //funcion principal, detecta cambios en la tabla y verifica si es una funcion
+       //Ademas, envia un mensaje de error si se ingresa una funcion invalida
         jTable1.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
@@ -33,7 +34,7 @@ public class Principal extends javax.swing.JFrame {
                     String col = abe[e.getColumn()];
                     String texto = String.valueOf(jTable1.getValueAt(e.getFirstRow(), e.getColumn()));
                     String[] fx = texto.split("");
-                    if (fx[0].equals("=")) {
+                    if (fx[0].equals("=")) {//comprueba si es una funcion
                         if (texto.contains("=Suma") || texto.contains("=Multiplicar") || texto.contains("=suma") || texto.contains("=multiplicar")) {
                             if (texto.length() == 12) {
                                 String[] celda1 = texto.substring(6, 8).toUpperCase().split("");
